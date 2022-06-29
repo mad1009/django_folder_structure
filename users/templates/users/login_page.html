@@ -1,0 +1,98 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'global/base_navbar.html' %}
+{% endblock navbar %}
+
+{% block css %}
+
+<style>
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+
+</style>
+{% endblock css %}
+
+    {% block nav %}
+
+
+    {% endblock nav %}
+
+
+
+
+{% block content %}
+
+
+
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show p-2 m-0" role="alert">
+  {{message}}
+  <button type="button" class="btn-close p-2 m-0" data-mdb-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <div class="d-flex align-items-center justify-content-center">
+        <!-- <img src="{% static 'global/imgs/logo_azaghar.png' %}" class="img-fluid"
+          alt="Sample image"> -->
+          <i class="fas fa-lock fa-10x"></i>
+        </div>
+        </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+        <form method="POST" autocomplete="off">
+        {% csrf_token %}
+          <!-- <div class="form-group mb-4">
+            <label class="form-label" for="username">Nom d'utilisateur</label>
+            <input  type="text" placeholder="Enter your username" required class="form-control form-control-lg" >
+          </div> -->
+
+          <div class="form-outline my-3">
+            <input type="text"  placeholder="Entrez Votre Email / Username" name="username" id="username" class="form-control" />
+            <label class="form-label" for="username">Nom d'utilisateur ou Email</label>
+          </div>
+          
+          <div class="form-outline my-3">
+            <input type="password" id="form12" placeholder="Entrez Votre Mot De Passe" name="password" id="password" class="form-control" />
+            <label class="form-label" for="password">Mot De Passe</label>
+          </div>
+
+          <!-- <div class="form-group mb-4">
+            <label class="form-label" for="username">Mot de passe</label>
+            <input type="password" placeholder="Enter your username" required class="form-control form-control-lg" name="password" id="password">
+          </div> -->
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+          </div>
+
+    </form>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
